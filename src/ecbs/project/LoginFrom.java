@@ -213,6 +213,9 @@ class login{
         }
         if (log == "Admin"){
                     if (user.contains("Admin") && pass.contains("Admin234") ) {
+                    LoginSession.Usertype= "Adminstration";
+                    LoginSession.Username= "Admin";
+                    LoginSession.Password= "Admin234";
                         new AdminPanle().setVisible(true);
                         this.dispose();
                     }
