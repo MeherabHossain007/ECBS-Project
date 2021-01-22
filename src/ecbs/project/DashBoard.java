@@ -307,7 +307,7 @@ class Condetails{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-                try {
+            try {
             ArrayList<Condetails> con = new ArrayList<>();
             FileReader fileReader = new FileReader("condetails.txt");
             BufferedReader reader = new BufferedReader(fileReader);
