@@ -21,6 +21,7 @@ public class LoginFrom extends javax.swing.JFrame {
     public LoginFrom() {
         initComponents();
     }
+    static int count = 0; 
 class login{
         String username;
         String password;
@@ -30,8 +31,8 @@ class login{
         this.password = password;
     }
 
-
 }   
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -216,6 +217,10 @@ class login{
                     LoginSession.Usertype= "Adminstration";
                     LoginSession.Username= "Admin";
                     LoginSession.Password= "Admin234";
+                    count++;  
+                    if (count < 3) { 
+                    AdminPanle.main(null); 
+                    }
                         new AdminPanle().setVisible(true);
                         this.dispose();
                     }
@@ -279,6 +284,7 @@ class login{
                 new LoginFrom().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

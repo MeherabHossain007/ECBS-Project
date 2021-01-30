@@ -37,11 +37,12 @@ class Condetails{
         String Dzone;
         String CAdd;
         String Cload;
+        String BId;
         String username;
 
         public Condetails(String cnamef,String cnamel, String cid, String MId, String BS,
                           String MStatus, String mtype, String dzone, String CAdd,
-                          String cload, String username) {
+                          String cload,String BId,String username) {
             Cnamef = cnamef;
             Cnamel = cnamel;
             Cid = cid;
@@ -51,7 +52,8 @@ class Condetails{
             Mtype = mtype;
             Dzone = dzone;
             this.CAdd = CAdd;
-            Cload = cload;
+            this.Cload = cload;
+            this.BId = BId;
             this.username = username;
         }
     }
@@ -324,10 +326,11 @@ class Condetails{
                 String Dzone= parts[7];
                 String CAdd= parts[8];
                 String Cload= parts[9];
-                String username= parts[10];
+                String BId = parts[10];
+                String username= parts[11];
 
 
-             Condetails ud = new Condetails(Cnamef,Cnamel,Cid,MId,BS,MStatus,Mtype,Dzone,CAdd,Cload,username);
+             Condetails ud = new Condetails(Cnamef,Cnamel,Cid,MId,BS,MStatus,Mtype,Dzone,CAdd,Cload,BId,username);
              con.add(ud);
             }
             for (Condetails i : con) {
@@ -341,6 +344,7 @@ class Condetails{
                     CondetailsSession.Dzone = i.Dzone;
                     CondetailsSession.CAdd = i.CAdd;
                     CondetailsSession.Cload = i.Cload;
+                    BillingSession.Bid= i.BId;
 
                 }
 
@@ -354,7 +358,7 @@ class Condetails{
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
                 ArrayList<BillInfo> bill = new ArrayList<>();
         try {
-            FileReader fileReader = new FileReader("billinfo.txt");
+            FileReader fileReader = new FileReader("Bill.txt");
             BufferedReader reader = new BufferedReader(fileReader);
 
             String line;
@@ -379,7 +383,6 @@ class Condetails{
             for (BillInfo i : bill) {
                 if (LoginSession.Username.equals(i.username)){
                     BillingSession.Bno = i.Bno;
-                    BillingSession.Bid = i.Bid;
                     BillingSession.CD = i.CD;
                     BillingSession.ConU = i.ConU;
                     BillingSession.DCharge = i.DCharge;
@@ -389,7 +392,6 @@ class Condetails{
                     BillingSession.BDate = i.BDate;
                     BillingSession.TBill = i.TBill;
                 }
-
             }
         } catch (IOException e) {
             e.printStackTrace();
