@@ -180,10 +180,10 @@ public class CreditCard extends javax.swing.JFrame {
               }
               else{
                try {
-            FileWriter file = new FileWriter("paidbiil.txt",true);
+            FileWriter file = new FileWriter("paidbill.txt",true);
             BufferedWriter writer = new BufferedWriter(file);
             
-            writer.append(BillingSession.Bid+" "+BillingSession.TBill+" "+"Bill paid");
+            writer.append(BillingSession.Bno+" "+BillingSession.BDate+" "+BillingSession.TBill+" "+"Bill paid");
             writer.newLine();
             writer.close();
             

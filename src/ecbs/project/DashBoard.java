@@ -383,6 +383,7 @@ class Condetails{
             for (BillInfo i : bill) {
                 if (LoginSession.Username.equals(i.username)){
                     BillingSession.Bno = i.Bno;
+                    BillingSession.Bid = i.Bid;
                     BillingSession.CD = i.CD;
                     BillingSession.ConU = i.ConU;
                     BillingSession.DCharge = i.DCharge;
@@ -393,6 +394,7 @@ class Condetails{
                     BillingSession.TBill = i.TBill;
                 }
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

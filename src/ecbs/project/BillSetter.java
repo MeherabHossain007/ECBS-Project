@@ -7,6 +7,7 @@ package ecbs.project;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,13 +15,17 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -241,6 +246,11 @@ class meter{
 
         jButton3.setFont(new java.awt.Font("Monospaced", 1, 12)); // NOI18N
         jButton3.setText("Show Reading");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -463,6 +473,9 @@ class meter{
         String User = jTextField1.getText();
         int BillNo = ThreadLocalRandom.current().nextInt(100000, 400000 + 1);
         int CD = ThreadLocalRandom.current().nextInt(100, 900 + 1);
+        Calendar cal = Calendar.getInstance();
+        int Month = cal.get(Calendar.MONTH)+1;
+        String monthSTR= String.valueOf(Month);
         jTextField9.setText(BillNo+" ");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
         LocalDateTime now = LocalDateTime.now();
@@ -556,7 +569,52 @@ class meter{
            } catch (IOException ex) {
                Logger.getLogger(BillSetter.class.getName()).log(Level.SEVERE, null, ex);
            }
+           JOptionPane.showMessageDialog(this,"Bill is Set");
+           this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        FileReader f = null;
+        String User = jTextField1.getText();
+           try {
+               // TODO add your handling code here:
+               ArrayList<meter> met = new ArrayList<meter>();
+               f = new FileReader("meterentry.txt");
+               BufferedReader reade = new BufferedReader(f);
+               String line;
+               while ((line = reade.readLine()) != null){
+                   String [] parts = line.split(" ");
+                   String user = parts[0];
+                   String mno = parts[1];
+                   String pread = parts[2];
+                   String cread = parts[3];
+                   String Bid = parts[4];
+                   String day = parts[5];
+                   String month = parts[5];
+                   String year = parts[7];
+                   
+                   meter mete = new meter(user,mno,pread,cread,Bid,day,month,year);
+                   met.add(mete);
+               }
+                for (meter i : met){
+                if(User.equals(i.username)){
+                MeterReadSession.PreviousRead = i.pread;
+                MeterReadSession.CurrentRead = i.cread;
+                jTextArea1.append("Previous Reading:"+MeterReadSession.PreviousRead+"\n"+"Current Reading:"+MeterReadSession.CurrentRead);
+                }
+            }
+           } catch (FileNotFoundException ex) {
+               Logger.getLogger(BillSetter.class.getName()).log(Level.SEVERE, null, ex);
+           } catch (IOException ex) {
+               Logger.getLogger(BillSetter.class.getName()).log(Level.SEVERE, null, ex);
+           } finally {
+               try {
+                   f.close();
+               } catch (IOException ex) {
+                   Logger.getLogger(BillSetter.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

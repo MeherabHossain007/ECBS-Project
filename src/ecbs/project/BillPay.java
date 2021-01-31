@@ -5,6 +5,10 @@
  */
 package ecbs.project;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JComboBox;
@@ -81,7 +85,7 @@ public class BillPay extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel2.setText("Billing Id:");
+        jLabel2.setText("Billing No.:");
 
         jLabel3.setText("Payment Option:");
 
@@ -251,7 +255,14 @@ public class BillPay extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String Bid = jTextField1.getText();
+        String Bno = jTextField1.getText();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  
+        LocalDateTime now = LocalDateTime.now();
+        String date = dtf.format(now);
+        String Amount=jTextField10.getText();
+        BillingSession.Bno = Bno;
+        BillingSession.BDate = date;
+        BillingSession.TBill = Amount;
           if (jRadioButton1.isSelected()) {
            new CreditCard().setVisible(true);
     
@@ -329,7 +340,7 @@ public class BillPay extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
+    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField10;
     // End of variables declaration//GEN-END:variables
 }
