@@ -226,7 +226,7 @@ public class AdminPanle extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-
+      new BillPayInfo().setVisible(true);
     }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
