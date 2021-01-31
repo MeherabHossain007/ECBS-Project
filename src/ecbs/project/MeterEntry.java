@@ -220,7 +220,7 @@ public class MeterEntry extends javax.swing.JFrame {
                FileWriter file = new FileWriter("meterentry.txt",true);
                BufferedWriter writer = new BufferedWriter(file);
                
-               writer.append(LoginSession.Username+" "+meterN+" "+meterRead+" "+PmeterRead+" "+Billid+" "+Day+" "+month+" "+year+" ");
+               writer.append(LoginSession.Username+" "+meterN+" "+PmeterRead+" "+meterRead+" "+Billid+" "+Day+" "+month+" "+year+" ");
                writer.newLine();
                writer.close();
            } catch (IOException ex) {
