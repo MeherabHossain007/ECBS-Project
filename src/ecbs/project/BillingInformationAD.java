@@ -6,8 +6,10 @@
 package ecbs.project;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -71,6 +73,8 @@ public class BillingInformationAD extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,7 +111,7 @@ public class BillingInformationAD extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
-        jButton2.setText("Close");
+        jButton2.setText("Remove");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -120,11 +124,11 @@ public class BillingInformationAD extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Bill No.", "Bill ID", "C/D", "Consume Unit", "Demand Charge", "Minimum Charge", "Service Charge", "VAT", "Billing Date", "Total Bill"
+                "No.", "Bill No.", "Bill ID", "C/D", "Consume Unit", "Demand Charge", "Minimum Charge", "Service Charge", "VAT", "Billing Date", "Total Bill"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -133,17 +137,23 @@ public class BillingInformationAD extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
+        jLabel2.setText("Enter the line No.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
+                .addGap(111, 111, 111)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(98, 98, 98))
+                .addGap(42, 42, 42))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -153,12 +163,18 @@ public class BillingInformationAD extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 28, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -190,11 +206,13 @@ public class BillingInformationAD extends javax.swing.JFrame {
                 BillInfo bd = new BillInfo(Bno,Bid,CD,ConU,DCharge,MCharge,SCharge,Vat,BDate,TBill,username);
                 bill.add(bd);
             }
+            int j =1;
             for (BillInfo i : bill) {
 
-                String data [] = {i.Bno,i.Bid,i.CD,i.CD,i.DCharge,i.MCharge,i.MCharge,
+                String data [] = {j+"",i.Bno,i.Bid,i.CD,i.CD,i.DCharge,i.MCharge,i.MCharge,
                     i.SCharge,i.Vat,i.BDate,i.TBill
                 };
+                j++;
                 DefaultTableModel tbl = (DefaultTableModel)jTable1.getModel();
                 tbl.addRow(data);
             }
@@ -208,6 +226,45 @@ public class BillingInformationAD extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        ArrayList<BillInfo> bill = new ArrayList<>();
+try {
+            FileReader fileReader = new FileReader("Bill.txt");
+            BufferedReader reader = new BufferedReader(fileReader);
+
+            String line;
+            while ((line = reader.readLine()) != null){
+                String [] parts = line.split(" ");
+                String Bno = parts[0];
+                String Bid = parts[1];
+                String CD = parts[2];
+                String ConU = parts[3];
+                String DCharge = parts[4];
+                String MCharge = parts[5];
+                String SCharge = parts[6];
+                String Vat = parts[7];
+                String BDate = parts[8];
+                String TBill = parts[9];
+                String username= parts[10];
+
+
+                BillInfo bd = new BillInfo(Bno,Bid,CD,ConU,DCharge,MCharge,SCharge,Vat,BDate,TBill,username);
+                bill.add(bd);
+            }
+            String in = jTextField1.getText();
+            int index = Integer.parseInt(in);
+             bill.remove(index - 1);
+             FileWriter fi = new FileWriter("Bill.txt");
+             BufferedWriter out = new BufferedWriter(fi);
+             for (BillInfo i : bill) {
+                out.write(i.Bno+" "+i.Bid+" "+i.CD+" "+i.ConU+" "+
+                        i.DCharge+" "+i.MCharge+" "+i.SCharge+" "+i.Vat+" "+
+                        i.BDate+" "+i.TBill+" "+i.username);                
+                out.newLine();
+            }
+            out.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+             }        
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -250,8 +307,10 @@ public class BillingInformationAD extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
