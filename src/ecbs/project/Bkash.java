@@ -99,7 +99,7 @@ public class Bkash extends javax.swing.JFrame {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFocusable(false);
 
         jLabel1.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N

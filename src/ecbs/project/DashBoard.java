@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -357,6 +358,7 @@ class Condetails{
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
                 ArrayList<BillInfo> bill = new ArrayList<>();
+                String name = null;
         try {
             FileReader fileReader = new FileReader("Bill.txt");
             BufferedReader reader = new BufferedReader(fileReader);
@@ -392,14 +394,20 @@ class Condetails{
                     BillingSession.Vat = i.Vat;
                     BillingSession.BDate = i.BDate;
                     BillingSession.TBill = i.TBill;
+                    name = i.username;
                 }
-            }
 
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+            if(LoginSession.Username.equals(name)){
+            new BillingInformation().setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Bill is not set yet");
+                }
         
-        new BillingInformation().setVisible(true);
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked

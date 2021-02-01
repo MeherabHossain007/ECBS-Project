@@ -110,7 +110,7 @@ class meter{
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -499,7 +499,17 @@ class meter{
                 BillingSession.Bid = i.Bid;
                 LoginSession.Username = i.username;
                 }
+
             }
+            if(LoginSession.Username.equals(User)){
+            //Do noting
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"Meter reading is not enter yet");
+                this.dispose();
+                }
+            
+            
         } catch (IOException e) {
             e.printStackTrace();
         } 

@@ -114,7 +114,7 @@ public class MeterEntry extends javax.swing.JFrame {
 
         jLabel9.setText("Previous Meter Reading :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", " " }));
 
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +220,7 @@ public class MeterEntry extends javax.swing.JFrame {
                FileWriter file = new FileWriter("meterentry.txt",true);
                BufferedWriter writer = new BufferedWriter(file);
                
-               writer.append(LoginSession.Username+" "+meterN+" "+PmeterRead+" "+meterRead+" "+Billid+" "+Day+" "+month+" "+year+" ");
+               writer.append(LoginSession.Username+" "+meterN+" "+PmeterRead+" "+meterRead+" "+Billid+" "+Day+" "+month+" "+year);
                writer.newLine();
                writer.close();
            } catch (IOException ex) {
@@ -231,16 +231,13 @@ public class MeterEntry extends javax.swing.JFrame {
         else{
              JOptionPane.showMessageDialog(this,"Please type correct Meter No./Bill Id!");
              }
+       JOptionPane.showMessageDialog(this,"Meter Reading is Stored & Do not Re-Enter");
+       this.dispose();
            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> years_tmp = new ArrayList<String>();
-        for(int years = 1980; years<=Calendar.getInstance().get(Calendar.YEAR); years++) {
-        years_tmp.add(years+"");
-        }
-        jComboBox2 = new JComboBox(years_tmp.toArray());
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**

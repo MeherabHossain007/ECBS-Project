@@ -50,7 +50,7 @@ public class CreditCard extends javax.swing.JFrame {
         jSpinner2 = new javax.swing.JSpinner();
         jSpinner3 = new javax.swing.JSpinner();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Card Holder Name:");
 
