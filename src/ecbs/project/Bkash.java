@@ -199,7 +199,7 @@ public class Bkash extends javax.swing.JFrame {
             FileWriter file = new FileWriter("paidbill.txt",true);
             BufferedWriter writer = new BufferedWriter(file);
             
-            writer.append(BillingSession.Bno+" "+BillingSession.BDate+" "+BillingSession.TBill+" "+"Bill paid");
+            writer.append(BillingSession.Bno+" "+BillingSession.BDate+" "+BillingSession.TBill+" "+"Bill-paid");
             writer.newLine();
             writer.close();
             

@@ -221,8 +221,7 @@ class login{
                     if (count < 3) { 
                     AdminPanle.main(null); 
                     }
-                        new AdminPanle().setVisible(true);
-                        this.dispose();
+                    this.dispose();
                     }
                     else{
                       JOptionPane.showMessageDialog(this,"Please type correct Username/Password!");
