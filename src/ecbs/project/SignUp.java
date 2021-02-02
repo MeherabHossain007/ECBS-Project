@@ -398,9 +398,6 @@ public class SignUp extends javax.swing.JFrame {
                 if(username.equals(userN)){
                 JOptionPane.showMessageDialog(this,"Please type another username");
                 }
-                else{
-                jButton1.setVisible(true);
-                }
                 
             }
             reader.close();
